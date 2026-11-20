@@ -1,7 +1,7 @@
 {
   "name": "bb-plugin-thoughts-open",
-  "version": "1.0.0",
-  "description": "bb plugin: shows every Thought (reasoning) row expanded and in full, and folds them all with one header button.",
+  "version": "1.0.1",
+  "description": "bb plugin: read what your agents are thinking and where they are heading, so you can stop them in time and steer them right.",
   "keywords": [
     "bb",
     "bb-plugin",
@@ -27,7 +27,7 @@
   },
   "bb": {
     "name": "Thoughts Open",
-    "description": "Shows every Thought from every agent expanded and in full, and folds them all again with one button in the thread header.",
+    "description": "Read what your agents are thinking and where they are heading, so you can stop them in time and steer them right.",
     "branding": {
       "icon": "Brain"
     },

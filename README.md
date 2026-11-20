@@ -3,11 +3,11 @@
 [![CI](https://github.com/smixs/bb-plugin-thoughts-open/actions/workflows/ci.yml/badge.svg)](https://github.com/smixs/bb-plugin-thoughts-open/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-A [bb](https://getbb.app) plugin that shows every Thought from every agent expanded and in full, and folds them all again with one button in the thread header.
+A [bb](https://getbb.app) plugin. Read what your agents are thinking and where they are heading, so you can stop them in time and steer them right.
 
-![Thoughts: open. Every Thought row in the thread is expanded, including the ones inside a "Ran 5 commands" group](docs/open.png)
+Every Thought from every agent stays expanded and in full, right in the timeline. One button in the thread header folds them all again.
 
-![Thoughts: folded. The same thread with every Thought folded away](docs/folded.png)
+![A bb thread with every Thought expanded and the Thoughts: open button in the header](docs/thoughts.png)
 
 ## What it does
 
