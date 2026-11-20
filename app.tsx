@@ -1,15 +1,17 @@
 // bb-plugin-thoughts-open: frontend entry.
 //
 // - A content script (thoughts-open.ts) opens or folds Thought rows.
-// - A thread header button shows the mode and flips it with one click.
-// - A command palette entry ("Thoughts: show or fold") does the same.
+// - A second content script (header-toggle.ts) puts a brain icon toggle into
+//   every thread header.
+// - A thread menu entry and a command palette entry flip the mode too.
 //
-// The mode lives on the bb server (server.ts). The header action's useData,
-// which bb calls once for the whole app, reads it, follows the realtime
-// channel, and hands it to the content script.
+// The mode lives on the bb server (server.ts). The thread menu entry's
+// useData, which bb calls once for the whole app, reads it, follows the
+// realtime channel, and hands it to the content scripts.
 import { useCallback, useEffect, useState } from "react";
 import { definePluginApp, useRealtime, useRpc } from "@get-bb/plugin-sdk/app";
 import type { rpcContract } from "./server";
+import { mountHeaderToggle } from "./header-toggle";
 import { getOpenMode, keepThoughtsOpen, setOpenMode, toggleOpenMode, setModeWriter } from "./thoughts-open";
 
 const MODE_CHANGED = "thoughts-open-mode";
@@ -53,16 +55,22 @@ export default definePluginApp((app) => {
     },
   });
 
+  app.contentScripts.register({
+    id: "header-toggle",
+    mount() {
+      return mountHeaderToggle();
+    },
+  });
+
   app.slots.experimental_threadAction<ModeData>({
     id: "toggle",
     title: "Thoughts: show or fold",
     icon: "Brain",
-    group: "thoughts-open",
-    placement: "header",
+    group: "3_settings",
     useData: useMode,
     item: ({ data }) => ({
-      label: data.open ? "Thoughts: open" : "Thoughts: folded",
-      icon: data.open ? "Eye" : "EyeOff",
+      label: data.open ? "Fold thoughts" : "Show thoughts",
+      icon: "Brain",
       run: data.toggle,
     }),
   });

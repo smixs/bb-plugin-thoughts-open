@@ -1,6 +1,6 @@
 {
   "name": "bb-plugin-thoughts-open",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "bb plugin: read what your agents are thinking and where they are heading, so you can stop them in time and steer them right.",
   "keywords": [
     "bb",

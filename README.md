@@ -5,18 +5,18 @@
 
 A [bb](https://getbb.app) plugin. Read what your agents are thinking and where they are heading, so you can stop them in time and steer them right.
 
-Every Thought from every agent stays expanded and in full, right in the timeline. One button in the thread header folds them all again.
+Every Thought from every agent stays expanded and in full, right in the timeline. A brain icon in the thread header folds them all again.
 
-![A bb thread with every Thought expanded and the Thoughts: open button in the header](docs/thoughts.png)
+![A bb thread with every Thought expanded and the brain toggle in the header](docs/thoughts.png)
 
 ## What it does
 
-- **One button flips it.** The thread header shows **Thoughts: open** or **Thoughts: folded**. Click it to switch every Thought in every thread at once. The command palette has the same switch: **Thoughts: show or fold**. The choice is saved on your bb server, so all your windows and devices follow it.
+- **One icon flips it.** A brain icon sits in the thread header next to bb's own icons. A dot on it means Thoughts are open; no dot and a dimmed brain means they are folded. Click it to switch every Thought in every thread at once. The thread menu (**Fold thoughts** / **Show thoughts**) and the command palette (**Thoughts: show or fold**) do the same. The choice is saved on your bb server, so all your windows and devices follow it.
 - **Every Thought row opens.** Claude Code, Codex, Pi, Cursor, Grok: any provider whose reasoning bb shows as a Thought row. Rows open as they stream in and stay open after the turn ends.
 - **Thoughts inside groups are shown too.** bb folds finished thoughts into work groups such as "Ran 5 commands". A group that holds a Thought opens. A group of commands only stays folded.
 - **Long thoughts are not cut.** bb caps the Thought body at 20rem with an inner scroll bar. The plugin lifts the cap, so the whole text sits in the timeline.
 - **Folded means folded.** In folded mode open Thought rows fold, and groups that hold a Thought fold too.
-- **Your clicks win.** Toggle one Thought or group by hand and the plugin leaves it as you set it, until you flip the header button again.
+- **Your clicks win.** Toggle one Thought or group by hand and the plugin leaves it as you set it, until you flip the brain icon again.
 
 It needs no account or external service.
 
@@ -43,7 +43,7 @@ Requires bb 0.50 or later.
 The plugin has three parts:
 
 - a content script ([`thoughts-open.ts`](thoughts-open.ts)) that opens or folds rows in the timeline;
-- a thread header action and a command palette command ([`app.tsx`](app.tsx)) that flip the mode;
+- a header toggle ([`header-toggle.ts`](header-toggle.ts)) that places the brain icon in every thread header, plus a thread menu entry and a command palette command ([`app.tsx`](app.tsx));
 - a backend ([`server.ts`](server.ts)) that keeps the mode in the plugin's key-value storage and broadcasts each change on a realtime channel.
 
 In open mode the content script works like this:
@@ -60,6 +60,7 @@ A row the host folds back three times in a row is left alone, so the plugin cann
 
 ## Limits
 
+- bb's SDK draws header actions as wide labelled buttons, so the brain icon is placed by a content script into the header's `data-thread-header-workflow-actions` group. If a bb update renames it, the icon does not appear; the thread menu entry and the command palette still flip the mode.
 - The plugin reads bb's timeline markup: `data-timeline-row-id`, the `op:reasoning` and `work-summary` row ids, `aria-expanded` toggles and the `max-h-80` body class. A bb update that renames them stops the plugin without an error. Open an issue if that happens.
 - A group without a Thought opens for one frame before it closes again.
 - The plugin shows what the provider sends. A provider that sends only a summary of its reasoning shows that summary.

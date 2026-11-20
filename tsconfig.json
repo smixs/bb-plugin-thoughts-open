@@ -20,6 +20,8 @@
     "server.ts",
     "app.tsx",
     "thoughts-open.ts",
-    "thoughts-open.test.ts"
+    "thoughts-open.test.ts",
+    "header-toggle.ts",
+    "header-toggle.test.ts"
   ]
 }

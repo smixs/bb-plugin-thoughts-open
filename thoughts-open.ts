@@ -52,6 +52,12 @@ export function setOpenMode(open: boolean): void {
   for (const listener of modeListeners) listener();
 }
 
+/** Calls the listener after every mode change. Returns the unsubscribe function. */
+export function onModeChange(listener: () => void): () => void {
+  modeListeners.add(listener);
+  return () => modeListeners.delete(listener);
+}
+
 /** Set by the app: saves a new mode on the server. */
 export function setModeWriter(writer: ((open: boolean) => void) | null): void {
   modeWriter = writer;
