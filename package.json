@@ -1,0 +1,57 @@
+{
+  "name": "bb-plugin-thoughts-open",
+  "version": "1.0.0",
+  "description": "bb plugin: shows every Thought (reasoning) row expanded and in full, and folds them all with one header button.",
+  "keywords": [
+    "bb",
+    "bb-plugin",
+    "reasoning",
+    "thinking",
+    "thoughts",
+    "timeline"
+  ],
+  "license": "MIT",
+  "author": "smixs (https://github.com/smixs)",
+  "homepage": "https://github.com/smixs/bb-plugin-thoughts-open#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smixs/bb-plugin-thoughts-open.git"
+  },
+  "bugs": {
+    "url": "https://github.com/smixs/bb-plugin-thoughts-open/issues"
+  },
+  "type": "module",
+  "engines": {
+    "bb": ">=0.50",
+    "bbPluginSdk": ">=0.6.157"
+  },
+  "bb": {
+    "name": "Thoughts Open",
+    "description": "Shows every Thought from every agent expanded and in full, and folds them all again with one button in the thread header.",
+    "branding": {
+      "icon": "Brain"
+    },
+    "server": "./server.ts",
+    "app": "./app.tsx"
+  },
+  "scripts": {
+    "typecheck": "tsc -p .",
+    "test": "vitest run",
+    "check": "npm run typecheck && npm test",
+    "build": "bb plugin build"
+  },
+  "devDependencies": {
+    "@get-bb/plugin-sdk": "0.6.157",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "happy-dom": "^21.0.4",
+    "hono": "^4.13.19",
+    "typescript": "^5.7.0",
+    "vitest": "^5.1.1"
+  },
+  "dependencies": {
+    "zod": "^4.6.7"
+  }
+}
